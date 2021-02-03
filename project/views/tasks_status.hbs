@@ -1,0 +1,95 @@
+
+<section class="task_status" id = "{{tasks_statusMessege}}">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/edit" method="POST" class="form-horizontal">
+                  
+                            <div class="form-group" >
+                                <label for="name" class="control-label">Задача</label>
+                                <div>
+                                    <input type="text" class="form-control" value="{{task_status.name}}" name="tasksStatus"/>
+                                    <input type="text" class="form-control hidden" value="{{task_status.id}}" name="task_id"/>
+                                </div>
+                            </div>
+                    
+                            <div>
+                                <label for="status" class="control-lable">Статус задачи</label>
+                                <select class="form-control" name="statusTasks" >
+                                    {{#each userstatuses}}
+                                        <option value="{{this.id}}">{{this.name}}</option>
+                                    {{/each}}  
+                                </select>
+
+                            </div>
+
+                            <div class="form-group mb-0 mt-4">
+                                <div class="w-100">
+                                    <a href="/back" class="btn btn-light">Назад</a>
+                                    <button type="submit" class="btn btn-success">Сохранить</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-12">
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <span class="float-left">Группы исполнителей</span>
+                        <span class="float-right">
+                            <button class="btn btn-sm btn-dark" data-toggle="modal" data-target="#addModal">Добавить</button>
+                        </span>
+                    </div>
+
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <tbody>
+                            {{#each group_tasks}}
+                            <tr>
+                                <td><p>{{this.group_name}}</p></td>
+                                <td>
+                                    
+                                    <form action="/clean{{this.id}}" method="POST">
+                                        <input type="text" class="form-control hidden" value="{{task_id}}" name="task_id"/>
+                                        <button type="submit" class="btn_delete_status" name="{{this.id}}">Удалить</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {{/each}}  
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form action="/add_task_group" method="POST">
+            <div class="modal" id="addModal">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <h5>Добавить группу</h5>
+                            <div class="form-group">
+                                <input type="text" class="form-control hidden" value="{{task_status.id}}" name="task_id"/>
+                                <select class="form-control custom-select" name="group" id="group">
+                                {{#each usergroup}}
+                                    <option value="{{this.id}}:{{this.name}}">{{this.name}}</option>
+                                {{/each}} 
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-dismiss="modal">Отмена</button>
+                            <button type="submit" class="btn btn-success">Добавить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
