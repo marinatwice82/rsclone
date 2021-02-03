@@ -1,0 +1,46 @@
+
+<section class="statuses" id = "{{statusMessege}}">
+    <div class="container">
+        <div class="card ">
+            <div class="card-body">
+                <form action="/statuses" method="POST" class="form-horizontal">
+                    <div class="form-group">
+                        <label for="name" class="control-label">Статус</label>
+                        <div>
+                            <input type="text" name="name_status" id="name" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-0">
+                        <div class="w-100">
+                            <button type="submit" class="btn_add">Добавить статус</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                Список статусов
+            </div>
+            <div class="card-body">
+               <table class="table table-striped">
+                    <tbody>
+                    {{#each statuses}}
+                        <tr>
+                            <td class="table-text"><p>{{this.name}}</p></td>
+                            <td>
+                                <form action="/delstatus{{this.id}}"  method="GET">
+                                <!--запрос на удаление через cet-->
+                                    <button type="submit" class="btn_delete_status" name="{{this.id}}">Удалить</button>
+                                </form>
+                            </td>
+                        </tr>
+                       {{/each}}  
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

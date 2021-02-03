@@ -1,0 +1,61 @@
+
+<section class="add_tasks"  id="{{message}}">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <form action="/add_tasks" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name" class="control-label">Задача</label>
+                        <div>
+                            <input type="text" class="form-control" id="name" name="name_tasks"/>
+                        </div>
+                    </div>
+
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input"  
+                        accept="image/jpeg,image/png" id="image"  name="image_tasks">
+                        <label for="image" class="custom-file-label">Выберите изображение</label>
+                    </div>
+
+                    <div class="form-group mt-4 mb-0">
+                        <div class="w-100">
+                            <button type="submit" class="btn_add">Добавить задачу</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mt-4 ">
+            <div class="card-header">
+                Текущие задачи
+            </div>
+            <table class="table table-striped">
+                <tbody>
+                    {{#each tasks}}
+                    <tr>
+                        <td>
+                            {{#if this.image}}
+                                <img src="public/uploads/{{this.image}}" width="80" >
+                            {{/if}}
+                        </td>
+                        <td class="table-text">
+                            <a href="/link{{this.id}}">{{this.name}}</a>
+                        </td>
+                        
+                        <td class="table-text">
+                            {{this.status_id}}
+                        </td>
+        
+                       <td>
+                            <form action="/delete{{this.id}}" method="GET">
+                                <button type="submit" class="btn_delete" name="{{this.id}}">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}} 
+                </tbody>
+            </table>
+        </div>  
+    </div>
+</section>
