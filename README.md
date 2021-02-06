@@ -25,7 +25,7 @@
 
 ## Статья
 
-**[ссылка на статью](https://marinatwice82.medium.com)**
+**[ссылка на статью](https://marinatwice82.medium.com/%D0%BF%D1%80%D0%B8%D0%B2%D0%B5%D1%82-%D0%B2%D1%81%D0%B5%D0%BC-47af9118c0c5)**
 
 ## Реализованный функционал
 
